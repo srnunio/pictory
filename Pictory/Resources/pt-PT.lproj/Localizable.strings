@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Pictory
+
+  Created by Edvaldo Martins on 30/11/2023.
+  
+*/
+
+"app_name" = "Pictory";
+"remove_favorite" = "Remover dos favoritos";
+"favorite" = "Favorito";
+"favorites" = "Favoritos";
+"download" = "Download";
+"downloads" = "Downloads";
+"locally_download" = "Guardar localmente";
+"portuguese" = "Português";
+"english" = "Inglês";
+"languages" = "Línguas";
+"settings" = "Configurações";
+"photos" = "Fotográfias";
+"download_sucessfully" = "Download concluído ✅";
+"download_failure" = "Download interropido ❌";
