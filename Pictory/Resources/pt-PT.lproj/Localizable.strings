@@ -28,3 +28,6 @@
 "delete_download_warning" = "Deseja eliminar esse download?";
 "no" = "Não";
 "yes" = "Sim";
+"unauthorized" = "Sem autorização para continuar";
+"failure" = "Ocorreu uma falha temporária";
+"notfound" = "Nenhum resultado encontrado";
