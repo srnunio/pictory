@@ -37,5 +37,31 @@ class FavoritesViewModel: ObservableObject {
             self.favorites = result!
         }
     }
+    
+    
+    func delete(_ favorite: Favorite?, callback: (() -> Void)) {
+        if favorite == nil { return }
+        
+        let index = getPosition(favorite!)
+        
+        guard index >= 0 else { return }
+        
+        Task {
+            
+            let result = await db.removeToFavorite(objectId: favorite!.objectId)
+            
+            guard !result else { return }
+            
+            self.favorites.remove(at: index)
+        }
+        
+        callback()
+    }
+    
+    private func getPosition(_ favorite: Favorite) -> Int {
+        return favorites.firstIndex {item in
+            return item.objectId == favorite.objectId
+        } ?? -1
+    }
 }
  

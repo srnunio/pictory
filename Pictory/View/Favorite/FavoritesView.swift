@@ -10,6 +10,8 @@ import CachedAsyncImage
 
 struct FavoritesView: View {
     @StateObject var model: FavoritesViewModel = FavoritesViewModel()
+    @State var isDeliting: Bool = false
+    @State var selectedItem: Favorite?
     
     var body: some View {
         VStack{
@@ -24,6 +26,26 @@ struct FavoritesView: View {
         .onAppear {
             model.load()
         }
+        .alert(isPresented: $isDeliting) {
+            Alert(
+                title: Text("delete"),
+                message: Text("delete_download_warning"),
+                primaryButton: .cancel(Text("no"), action: {
+                    onSelect(nil)
+                }),
+                secondaryButton: .destructive(
+                    Text("yes"),
+                    action: {
+                        
+                        if selectedItem == nil { return }
+                        
+                        model.delete(selectedItem) {
+                            onSelect(nil)
+                        }
+                    }
+                )
+            )
+        }
     }
     
     var list: some View {
@@ -35,11 +57,19 @@ struct FavoritesView: View {
                     .cornerRadius(16)
                     .contextMenu {
                         Button { 
+                            onSelect(favorite)
                         } label: {
                             Text("delete".toTranslate)
                         }
                     }
             }
+        }
+    }
+    
+    private func onSelect(_ favorite: Favorite?) {
+        withAnimation {
+            selectedItem = favorite
+            isDeliting = favorite != nil
         }
     }
 }
