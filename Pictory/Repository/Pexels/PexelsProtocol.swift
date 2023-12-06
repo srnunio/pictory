@@ -7,7 +7,13 @@
 
 import Foundation
 
+enum PexelsError: String, Error {
+    case unauthorized
+    case notfound
+    case unknown
+}
+
 protocol PexelsProtocol {
-    func getAll(page: Int, perPage: Int) async throws -> PexelResponse
-    func getId(id: Int) async throws -> PexelPhoto?
+    func getId(id: Int, completion: @escaping (Result<PexelPhoto,PexelsError>) -> Void )
+    func getAll(page: Int, perPage: Int, completion: @escaping (Result<PexelResponse,PexelsError>) -> Void )
 }
