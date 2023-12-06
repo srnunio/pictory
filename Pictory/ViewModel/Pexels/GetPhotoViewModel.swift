@@ -7,12 +7,50 @@
 
 import SwiftUI
 
-struct GetPhotoViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+@MainActor
+class GetPhotoViewModel: ObservableObject {
+    fileprivate var repository: PexelsProtocol = PexelsRepository()
+    @Published fileprivate var _photo: PexelPhoto?
+    @Published fileprivate var _isBusy: Bool = false
+    @Published fileprivate var _error: PexelsError?
+    
+    var isBusy: Bool {
+        get { _isBusy }
     }
-}
-
-#Preview {
-    GetPhotoViewModel()
+    
+    var hasData: Bool {
+        get { _photo != nil }
+    }
+    
+    var hasError: Bool {
+        get { _error != nil }
+    }
+    
+    var error: PexelsError {
+        get { _error! }
+    }
+    
+    var photo: PexelPhoto {
+        get { _photo! }
+    }
+    
+    fileprivate func setData(_ photo: PexelPhoto?) {
+        self._photo = photo
+    }
+    
+    func load(id: Int) {
+        if _isBusy { return }
+        
+        self._isBusy = true
+        
+        repository.getId(id: id) { response in
+            self._isBusy = false
+            switch response {
+            case .success(let photo):
+                self.setData(photo)
+            case .failure(let error):
+                self._error = error
+            }
+        }
+    }
 }

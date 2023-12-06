@@ -14,6 +14,7 @@ class PhotosViewModel: ObservableObject {
     @Published fileprivate var _currentPage: Int = 1 
     @Published fileprivate var _isBusy: Bool = false
     @Published fileprivate var photos: [PexelPhoto] = [PexelPhoto]()
+    @Published fileprivate var _error: PexelsError?
     
     var isBusy: Bool {
         get { _isBusy }
@@ -47,30 +48,66 @@ class PhotosViewModel: ObservableObject {
         get { response.totalPage }
     }
     
+    var hasError: Bool {
+        get { _error != nil }
+    }
+    
+    var error: PexelsError {
+        get { _error! }
+    }
+    
+    fileprivate func setData(_ result: PexelResponse, _ refresh: Bool) {
+        if result.hasData {
+            if refresh {
+                photos = result.data as! [PexelPhoto]
+            }else{
+                result.data.forEach { item in
+                    photos.append(item as! PexelPhoto)
+                }
+            }
+        }else {
+            _error = .notfound
+        }
+        self.response = result
+    }
+    
     func load (refresh: Bool = false) {
-        Task {
-           
-            photos = []
-            
-            if refresh { _currentPage = 1}
-            
-            self._isBusy = true
-            
-            let result = try await repository.getAll(page: _currentPage, perPage: Constants.perPage)
+        if _isBusy { return }
+        repository.getAll(page: _currentPage, perPage: Constants.perPage) { response in
             
             self._isBusy = false
             
-            if result.hasData {
-                if refresh {
-                    photos = result.data as! [PexelPhoto]
-                }else{
-                    result.data.forEach { item in
-                        photos.append(item as! PexelPhoto)
-                    }
-                } 
-            }
-            response = result
+            switch response {
+                case .success(let result):
+                    self.setData(result, refresh)
+                case .failure(let error):
+                    self._error = error
+                }
         }
+        
+//        Task {
+//           
+//            photos = []
+//            
+//            if refresh { _currentPage = 1}
+//            
+//            self._isBusy = true
+//            
+//            let result = try await repository.getAll(page: _currentPage, perPage: Constants.perPage)
+//            
+//            self._isBusy = false
+//            
+//            if result.hasData {
+//                if refresh {
+//                    photos = result.data as! [PexelPhoto]
+//                }else{
+//                    result.data.forEach { item in
+//                        photos.append(item as! PexelPhoto)
+//                    }
+//                } 
+//            }
+//            response = result
+//        }
     }
     
     func onPrevious() {

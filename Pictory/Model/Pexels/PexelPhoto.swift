@@ -105,7 +105,7 @@ private enum PexelPhotoKeys : String, CodingKey {
     case id, width, height, avg_color,alt,src
 }
 
-struct PexelPhoto:Identifiable, Decodable, Hashable {
+struct PexelPhoto:Identifiable, Codable, Hashable, Equatable {
     
     var id: Int64
     var width: Int

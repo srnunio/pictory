@@ -88,11 +88,13 @@ struct PhotosView: View {
             VStack(spacing: 0){
                 if model.isBusy && !model.hasData {
                     ProgressView()
-                        .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
-                } else if !model.isBusy && !model.hasData {
-                    MessageView(message: "Photos not found")
-                }
-                else{
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .center)
+                }  else if model.hasError {
+                    MessageView(message: model.error.rawValue.toTranslate)
+                } else{
                     WaterfallGridView()
                 }
             }
