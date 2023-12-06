@@ -11,7 +11,7 @@ import UIKit
 
 @objc(PexelDownload)
 class PexelDownload: NSManagedObject {
-    @NSManaged public var date: String
+    @NSManaged public var date: Date
     @NSManaged public var content: UIImage?
     @NSManaged public var objectId: String
     
@@ -23,7 +23,7 @@ class PexelDownload: NSManagedObject {
 extension PexelDownload: Identifiable {
     var dateFormatted: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:MM"
-        return formatter.string(from: Date.parse(date) ?? Date())
+        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+        return formatter.string(from: date)
     }
 }

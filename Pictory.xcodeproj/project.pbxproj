@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		052315DD2B13606D00AE55D6 /* MyPreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */; };
+		054630DD2B1E04AA00E90AB1 /* FavoriteReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630DC2B1E04AA00E90AB1 /* FavoriteReactionView.swift */; };
+		054630DF2B1E10E800E90AB1 /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630DE2B1E10E800E90AB1 /* ReactionView.swift */; };
+		054630E12B1E12BD00E90AB1 /* DownloadReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630E02B1E12BD00E90AB1 /* DownloadReaction.swift */; };
+		054630E32B1E201A00E90AB1 /* DownloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630E22B1E201A00E90AB1 /* DownloadProtocol.swift */; };
+		054630E62B1E22EF00E90AB1 /* DownloadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630E52B1E22EF00E90AB1 /* DownloadRepository.swift */; };
+		054630E92B1F899C00E90AB1 /* DownloadListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630E82B1F899C00E90AB1 /* DownloadListItemView.swift */; };
+		054630EB2B1F8AA400E90AB1 /* FavoriteListeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630EA2B1F8AA400E90AB1 /* FavoriteListeItemView.swift */; };
 		0574C7C22B14A8450016B792 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574C7C12B14A8450016B792 /* Favorite.swift */; };
 		0574C7C52B14A8F70016B792 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0574C7C42B14A8F70016B792 /* SQLite */; };
 		0574C7C72B14A9130016B792 /* FavoriteDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0574C7C62B14A9130016B792 /* FavoriteDatabaseProtocol.swift */; };
@@ -50,7 +57,6 @@
 		0576ED1E2B128E310013A77F /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0576ED1D2B128E310013A77F /* CachedAsyncImage */; };
 		0576ED212B128E440013A77F /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 0576ED202B128E440013A77F /* WaterfallGrid */; };
 		059934742B1879140078C71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059934762B1879140078C71F /* Localizable.strings */; };
-		0599347E2B189D1F0078C71F /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599347D2B189D1F0078C71F /* NotificationUtils.swift */; };
 		05AAA8872B136F98007506EA /* MenuPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAA8862B136F98007506EA /* MenuPhotoView.swift */; };
 		05AAA8892B137207007506EA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAA8882B137207007506EA /* HomeView.swift */; };
 		05AAA88B2B13723A007506EA /* ControllerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAA88A2B13723A007506EA /* ControllerSettingView.swift */; };
@@ -76,6 +82,13 @@
 
 /* Begin PBXFileReference section */
 		052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPreferenceKeys.swift; sourceTree = "<group>"; };
+		054630DC2B1E04AA00E90AB1 /* FavoriteReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteReactionView.swift; sourceTree = "<group>"; };
+		054630DE2B1E10E800E90AB1 /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
+		054630E02B1E12BD00E90AB1 /* DownloadReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadReaction.swift; sourceTree = "<group>"; };
+		054630E22B1E201A00E90AB1 /* DownloadProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProtocol.swift; sourceTree = "<group>"; };
+		054630E52B1E22EF00E90AB1 /* DownloadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepository.swift; sourceTree = "<group>"; };
+		054630E82B1F899C00E90AB1 /* DownloadListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListItemView.swift; sourceTree = "<group>"; };
+		054630EA2B1F8AA400E90AB1 /* FavoriteListeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListeItemView.swift; sourceTree = "<group>"; };
 		0574C7C12B14A8450016B792 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		0574C7C62B14A9130016B792 /* FavoriteDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDatabaseProtocol.swift; sourceTree = "<group>"; };
 		0574C7C92B14AA360016B792 /* FavoriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
@@ -121,7 +134,6 @@
 		059934752B1879140078C71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		059934772B1879820078C71F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0599347C2B189CE30078C71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		0599347D2B189D1F0078C71F /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
 		05AAA8862B136F98007506EA /* MenuPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPhotoView.swift; sourceTree = "<group>"; };
 		05AAA8882B137207007506EA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05AAA88A2B13723A007506EA /* ControllerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerSettingView.swift; sourceTree = "<group>"; };
@@ -156,6 +168,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054630E42B1E202100E90AB1 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				054630E22B1E201A00E90AB1 /* DownloadProtocol.swift */,
+				054630E52B1E22EF00E90AB1 /* DownloadRepository.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		054630E72B1F38A600E90AB1 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				0574C7E92B15E59E0016B792 /* FavoriteHandler.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		0574C7BE2B14772C0016B792 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				0574C7E32B14E9400016B792 /* LocallyDownloadView.swift */,
+				054630E02B1E12BD00E90AB1 /* DownloadReaction.swift */,
+				054630E82B1F899C00E90AB1 /* DownloadListItemView.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -247,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				0574C7EF2B15EFDA0016B792 /* FavoritesView.swift */,
+				054630DC2B1E04AA00E90AB1 /* FavoriteReactionView.swift */,
+				054630EA2B1F8AA400E90AB1 /* FavoriteListeItemView.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -333,7 +366,6 @@
 				0574C7BE2B14772C0016B792 /* Photo */,
 				05AAA8852B136F80007506EA /* Components */,
 				05AAA8882B137207007506EA /* HomeView.swift */,
-				0574C7E72B14F6840016B792 /* MessageView.swift */,
 				0574C7F62B16010A0016B792 /* SettingsView.swift */,
 			);
 			path = View;
@@ -365,14 +397,13 @@
 			children = (
 				0574C7F32B15FF2F0016B792 /* Preferences */,
 				0574C7DC2B14DA6B0016B792 /* Download */,
-				0576ED102B1279880013A77F /* Constants.swift */,
+				054630E72B1F38A600E90AB1 /* Favorite */,
 				052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */,
+				0576ED102B1279880013A77F /* Constants.swift */,
 				0574C7CB2B14AABC0016B792 /* DatabaseUtils.swift */,
 				0574C7CD2B14AB2A0016B792 /* FileUtils.swift */,
 				0574C7D22B14C6820016B792 /* PexelsSaver.swift */,
 				0574C7E52B14EAEE0016B792 /* Extensions.swift */,
-				0574C7E92B15E59E0016B792 /* FavoriteHandler.swift */,
-				0599347D2B189D1F0078C71F /* NotificationUtils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -380,6 +411,7 @@
 		0576ED122B127A5B0013A77F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				054630E42B1E202100E90AB1 /* Download */,
 				0574C7C82B14AA130016B792 /* Favorite */,
 				0576ED132B127A6D0013A77F /* Pexels */,
 			);
@@ -406,6 +438,8 @@
 		05AAA8852B136F80007506EA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0574C7E72B14F6840016B792 /* MessageView.swift */,
+				054630DE2B1E10E800E90AB1 /* ReactionView.swift */,
 				05AAA88A2B13723A007506EA /* ControllerSettingView.swift */,
 				05AAA8862B136F98007506EA /* MenuPhotoView.swift */,
 			);
@@ -513,6 +547,7 @@
 				052315D02B13529600AE55D6 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 				052315D72B13533000AE55D6 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */,
 				0574C7C32B14A8F70016B792 /* XCRemoteSwiftPackageReference "SQLite" */,
+				054630D42B1A31C500E90AB1 /* XCRemoteSwiftPackageReference "ToastUI" */,
 			);
 			productRefGroup = 0576ECD42B10F2020013A77F /* Products */;
 			projectDirPath = "";
@@ -558,9 +593,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0574C7D32B14C6820016B792 /* PexelsSaver.swift in Sources */,
+				054630E62B1E22EF00E90AB1 /* DownloadRepository.swift in Sources */,
 				0574C7EA2B15E59E0016B792 /* FavoriteHandler.swift in Sources */,
+				054630E12B1E12BD00E90AB1 /* DownloadReaction.swift in Sources */,
 				0576ED192B127E2B0013A77F /* PhotosViewModel.swift in Sources */,
 				0574C7F52B15FF4F0016B792 /* SettingPreference.swift in Sources */,
+				054630DD2B1E04AA00E90AB1 /* FavoriteReactionView.swift in Sources */,
 				0576ED052B10F3900013A77F /* PexelPhoto.swift in Sources */,
 				05AAA8892B137207007506EA /* HomeView.swift in Sources */,
 				0576ED072B10F61F0013A77F /* PexelPhotoProtocol.swift in Sources */,
@@ -575,16 +613,20 @@
 				0576ECD72B10F2020013A77F /* PictoryApp.swift in Sources */,
 				0574C7C22B14A8450016B792 /* Favorite.swift in Sources */,
 				0574C7CA2B14AA360016B792 /* FavoriteRepository.swift in Sources */,
+				054630E32B1E201A00E90AB1 /* DownloadProtocol.swift in Sources */,
 				0574C7DE2B14DA890016B792 /* DownloadDataManager.swift in Sources */,
 				05AAA88B2B13723A007506EA /* ControllerSettingView.swift in Sources */,
 				0574C7E42B14E9400016B792 /* LocallyDownloadView.swift in Sources */,
 				0574C7ED2B15ED7A0016B792 /* FavoritesViewModel.swift in Sources */,
 				0574C7F72B16010A0016B792 /* SettingsView.swift in Sources */,
 				05AAA88D2B138A68007506EA /* PhotoDetailsView.swift in Sources */,
+				054630E92B1F899C00E90AB1 /* DownloadListItemView.swift in Sources */,
+				054630EB2B1F8AA400E90AB1 /* FavoriteListeItemView.swift in Sources */,
 				05AAA8872B136F98007506EA /* MenuPhotoView.swift in Sources */,
 				0576ED1B2B1288660013A77F /* PhotosView.swift in Sources */,
 				0576ED092B10F9FE0013A77F /* PexelResponse.swift in Sources */,
 				0574C7D12B14B0030016B792 /* DetailsOfPhotoViewModel.swift in Sources */,
+				054630DF2B1E10E800E90AB1 /* ReactionView.swift in Sources */,
 				0574C7E12B14E7240016B792 /* DownloadsViewModel.swift in Sources */,
 				0576ED112B1279880013A77F /* Constants.swift in Sources */,
 				0574C7E82B14F6840016B792 /* MessageView.swift in Sources */,
@@ -592,7 +634,6 @@
 				0574C7DB2B14D93C0016B792 /* DownloadTransformer.swift in Sources */,
 				0574C7F22B15F9500016B792 /* DownloadHandler.swift in Sources */,
 				0574C7CC2B14AABC0016B792 /* DatabaseUtils.swift in Sources */,
-				0599347E2B189D1F0078C71F /* NotificationUtils.swift in Sources */,
 				0574C7D52B14D6A80016B792 /* PexelDownload.swift in Sources */,
 				0574C7CE2B14AB2A0016B792 /* FileUtils.swift in Sources */,
 			);
@@ -988,6 +1029,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		054630D42B1A31C500E90AB1 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
 			};
 		};
 		0574C7C32B14A8F70016B792 /* XCRemoteSwiftPackageReference "SQLite" */ = {

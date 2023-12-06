@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct FavoriteReactionView: View {
+    @Binding var state: Bool
+    @Binding var reaction: Bool
+    @State var value: Bool? = nil 
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ReactionView(
+                state: $state,
+                reaction: $reaction,
+                positiveFigure: "heart.fill",
+                negativeFigure: "heart",
+                positiveMessage: "",
+                negativeMessage: "", 
+                color: .red
+            )
+        }
     }
 }
 
 #Preview {
-    FavoriteReactionView()
+    FavoriteReactionView(state: .constant(false), reaction: .constant(false))
 }

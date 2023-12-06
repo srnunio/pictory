@@ -37,6 +37,15 @@
       }
     },
     {
+      "identity" : "toastui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/quanshousio/ToastUI",
+      "state" : {
+        "revision" : "1828801ea49e2ab900ca5e6bb18245312fda66a2",
+        "version" : "3.0.1"
+      }
+    },
+    {
       "identity" : "trackable-scroll-view",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/maxnatchanon/trackable-scroll-view.git",

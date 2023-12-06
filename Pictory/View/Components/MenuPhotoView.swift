@@ -5,18 +5,22 @@
 //  Created by Edvaldo Martins on 26/11/2023.
 //
 
-import SwiftUI
+import SwiftUI 
 
 struct MenuPhotoView: View {
-    @Binding var photo: PexelPhoto
-    var onCallback: ((Bool) -> Void)?
+    @State private var isFavorite: Bool = false
+    @State private var isDownloaded: Bool = false
+    @Binding  var photo: PexelPhoto
+    var onInit: ((Bool) -> Void)?
+    var onFavoriteResult: ((Bool) -> Void)?
+    var onDownloadResult: ((Bool) -> Void)?
     
     
     private func onCheck() {
         Task {
             await FavoriteHandler.isFavorite(photo: photo){ value in
                 print("Check:isFavorite:: \(value)")
-                onCallback?(value)
+                onInit?(value)
             }
         }
     }
@@ -25,12 +29,14 @@ struct MenuPhotoView: View {
         if !photo.isFavorite {
             FavoriteHandler.add(photo: photo) { value in
                 print("Added to favorite? R: \(value)")
-                onCallback?(value)
+                onFavoriteResult?(value)
+                isFavorite = value
             }
         } else {
             FavoriteHandler.remove(photo: photo) { value in
                 print("Removeded to favorite? R: \(value)")
-                onCallback?(value)
+                onFavoriteResult?(value)
+                isFavorite = value
             }
         }
     }
@@ -52,7 +58,9 @@ struct MenuPhotoView: View {
     
     var donwloadActionView: some View {
         Button {
-            DownloadHandler.start(photo: photo)
+            DownloadHandler.start(photo: photo) { value in
+                onDownloadResult?(value)
+            }
         }
         label: {
             HStack {

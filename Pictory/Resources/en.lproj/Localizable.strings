@@ -10,8 +10,12 @@
 "remove_favorite" = "Remove favorite";
 "favorite" = "Favorite";
 "favorites" = "Favorites";
+"no_favorites" = "No Favorites";
+"add_to_favorite" = "Added to favorites";
+"remove_to_favorite" = "Removed from favorites";
 "download" = "Download";
 "downloads" = "Downloads";
+"no_downloads" = "No Downloads";
 "locally_download" = "Locally download";
 "portuguese" = "Portuguese";
 "english" = "English";
@@ -20,3 +24,7 @@
 "photos" = "Photos";
 "download_sucessfully" = "Download successfully ✅";
 "download_failure" = "Download failure ❌";
+"delete" = "Delete";
+"delete_download_warning" = "Do you want to delete this download?";
+"no" = "No";
+"yes" = "Yes";

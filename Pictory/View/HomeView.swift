@@ -10,13 +10,14 @@ import SwiftUI
 enum HomeViewEnum: String, CaseIterable {
     case photos,favorites, downloads
 }
+
 struct HomeView: View {
     @State var columns: Double = 3.0
     @State var openedDetail: Bool = false
     @State var selection: HomeViewEnum = .photos
     @State var photoSelected: PexelPhoto?
     @State var showed: Bool = false
-    @State var showSetting: Bool = false
+    @State var showSetting: Bool = false 
     
     @Namespace var animation: Namespace.ID
     
@@ -46,6 +47,7 @@ struct HomeView: View {
             }
         }
     }
+    
     var pickerView: some View {
         HStack {
             Picker( "",selection: $selection) {
@@ -79,9 +81,11 @@ struct HomeView: View {
                         .tag(HomeViewEnum.photos)
                         
                         FavoritesView()
-                            .tag(HomeViewEnum.favorites) 
+                            .tag(HomeViewEnum.favorites)
+                            .padding(.horizontal, 16)
                         LocallyDownloadView()
                             .tag(HomeViewEnum.downloads)
+                            .padding(.horizontal, 16)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }

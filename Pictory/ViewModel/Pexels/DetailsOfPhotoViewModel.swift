@@ -10,11 +10,17 @@ import SwiftUI
 @MainActor
 class DetailsOfPhotoViewModel: ObservableObject {
     @Published fileprivate var favoriteRespository: FavoriteDatabaseProtocol = FavoriteRepository()
+    @Published fileprivate var downloadRepository: DownloadProtocol = DownloadRepository()
     @Published fileprivate var _isFavorite: Bool = false
+    @Published fileprivate var _isDownloaded: Bool = false
     @Published fileprivate var _isDownloading : Bool = false
     
     var isFavorite: Bool {
         get { _isFavorite }
+    }
+    
+    var isDownloaded: Bool {
+        get { _isDownloaded }
     }
     
     var isDownloading: Bool {
@@ -30,6 +36,12 @@ class DetailsOfPhotoViewModel: ObservableObject {
     func checkIfIsFavorite(id: Int) {
         Task {
             _isFavorite = await favoriteRespository.isFavorite(objectId: String(id))
+        }
+    } 
+    
+    func checkIfIsDownloaded(id: Int) {
+        Task {
+            _isDownloaded = await downloadRepository.isDownloaded(objectId: String(id))
         }
     }
     

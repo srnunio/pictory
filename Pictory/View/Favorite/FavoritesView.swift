@@ -13,12 +13,12 @@ struct FavoritesView: View {
     
     var body: some View {
         VStack{
-            List {
-                if model.hasData {
-                    list
-                }else {
-                    MessageView(message: "No favorites",systemName: "star")
-                }
+            if model.hasData {
+                list
+            }else {
+                MessageView(
+                    message: "no_favorites".toTranslate,
+                    systemName: "star")
             }
         }
         .onAppear {
@@ -27,43 +27,18 @@ struct FavoritesView: View {
     }
     
     var list: some View {
-        ForEach(model.list) { favorite in
-            HStack(spacing: 12) {
-                CachedAsyncImage(
-                    url: favorite.url,
-                    placeholder: {
-                        ProgressView()
-                    },
-                    image: {data in
-                        Image(cpImage: data)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 45, height: 45)
-                            .clipShape(RoundedRectangle(cornerRadius: 10,style: .continuous))
-                            .padding(.horizontal, 2)
-                        
-                    },
-                    error: { error in
-                        Image(systemName: "photo")
+        ScrollView {
+            ForEach(model.list) { favorite in
+                FavoriteListeItemView(item: favorite)
+                    .padding()
+                    .background(.secondary.opacity(0.1))
+                    .cornerRadius(16)
+                    .contextMenu {
+                        Button { 
+                        } label: {
+                            Text("delete".toTranslate)
+                        }
                     }
-                )
-                .padding(.horizontal, 2)
-                
-                VStack (alignment: .leading, spacing: 8) {
-                    Text("Favorite #\(favorite.objectId)")
-                        .font(.subheadline)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.primary)
-                }
-                Spacer()
-            }
-            .swipeActions(edge: .trailing,allowsFullSwipe: true) {
-                Button {
-                    //                    model.delete(download: download)
-                } label: {
-                    Label("Read", systemImage: "trash")
-                }
-                .tint(.red)
             }
         }
     }

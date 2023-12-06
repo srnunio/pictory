@@ -17,13 +17,16 @@ struct PhotoDetailsView: View {
     
     var namespace: Namespace.ID
     
+    var x: some View {
+        Circle().background(Circle().fill(.orange))
+    }
+    
     var closeButton: some View {
         Button { onClose() }
         label: {
             Image(systemName: "plus")
                 .padding(16)
-                .background(.ultraThinMaterial, in: Circle())
-                .shadow(color: .secondary ,radius: 4)
+                .background(.ultraThinMaterial, in: Circle()) 
         }
         .rotationEffect(.init(degrees: 45))
         .padding(.leading)
@@ -35,12 +38,18 @@ struct PhotoDetailsView: View {
             model.addOrRemoveToFavorites(photo: photo)
         }
         label: {
-            Image(systemName: model.isFavorite ? "heart.fill" : "heart")
-                .padding(16)
-                .background(
-                    Circle().fill(.ultraThinMaterial))
-                .foregroundColor(model.isFavorite ? .red : .primary)
-                .shadow(color: .secondary ,radius: 4)
+            VStack {
+                if model.isFavorite {
+                    Image(systemName: "heart.fill" )
+                        .padding(16)
+                        .background(Circle().fill(.red))
+                } else    {
+                    Image(systemName: "heart")
+                        .padding(16)
+                        .background(Circle().fill(.ultraThinMaterial))
+                }
+                
+            } .foregroundColor(model.isFavorite ? .white : .primary)
         }
     }
     
@@ -55,7 +64,6 @@ struct PhotoDetailsView: View {
                 Image(systemName: "square.and.arrow.down")
                     .padding(16)
                     .background(Circle().fill(.ultraThinMaterial))
-                    .shadow(color: .secondary ,radius: 4)
             }
         }
     }
@@ -69,8 +77,9 @@ struct PhotoDetailsView: View {
                     closeButton
                     Spacer()
                     favoriteButton
-                    Spacer()
-                    downloadButton.padding(.trailing, 16)
+                    if !model.isDownloaded {
+                        downloadButton.padding(.horizontal, 16)
+                    }
                 }
                 .foregroundColor(.primary)
             }
@@ -110,6 +119,7 @@ struct PhotoDetailsView: View {
                 totalCostLimit: 1024 * 1024 * 50
             )
             model.checkIfIsFavorite(id: Int(photo.id))
+            model.checkIfIsDownloaded(id: Int(photo.id))
         }
     }
     

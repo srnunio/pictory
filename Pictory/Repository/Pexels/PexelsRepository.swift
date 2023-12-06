@@ -23,11 +23,14 @@ class PexelsRepository: PexelsProtocol {
         
         request.allHTTPHeaderFields = headers
         
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, error) = try await URLSession.shared.data(for: request)
+        
+        print("getAll \(error)")
         
         let decoder = JSONDecoder()
         
         return try decoder.decode(PexelResponse.self, from: data)
+        
     }
     
     

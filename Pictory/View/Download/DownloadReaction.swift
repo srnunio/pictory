@@ -7,12 +7,32 @@
 
 import SwiftUI
 
-struct DownloadReaction: View {
+struct DownloadReactionView: View {
+    @Binding var state: Bool
+    @Binding var reaction: Bool
+    @State var value: Bool? = nil 
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ReactionView(
+                state: $state,
+                reaction: $reaction,
+                positiveFigure: "arrowshape.down.fill",
+                negativeFigure: "arrowshape.down",
+                positiveMessage: "",
+                negativeMessage: "",
+                color: .black
+            )
+        }
     }
 }
 
 #Preview {
-    DownloadReaction()
+    DownloadReactionView(
+        state: .constant(false),
+        reaction: .constant(false)
+    )
 }
+
+
+ 

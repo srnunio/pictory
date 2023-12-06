@@ -7,11 +7,15 @@
 
 import SwiftUI
 import CachedAsyncImage
-import WaterfallGrid 
+import WaterfallGrid
 
 
 
 struct PhotosView: View {
+   
+    @State var stateValue: Bool = false
+    @State var isFavorite: Bool = false
+    @State var isDownloaded : Bool = false
     @State var columns: Double = 3.0
     @State var scrollValue: CGFloat = 0
     @Binding var openedDetail: Bool
@@ -48,24 +52,26 @@ struct PhotosView: View {
         ScrollView(.vertical,showsIndicators: false){
             WaterfallGrid(model.list) { photo in
                 PexelPhotoView(photo: photo)
-//                    .onLongPressGesture {
-//                        Task {
-//                            FavoriteHandler.isFavorite(photo: photo, callback: { value in
-//                                model.update(photo.copyWith(isFavorite: value))
-//                            })
-//                        }
-//                    }
                     .onTapGesture {
                         onTapped(photo: photo)
                     }
                     .contextMenu  {
-                        MenuPhotoView(photo: .constant(photo)){ value in
-                            print("update photo \(photo.id) -> \(value)")
+                        MenuPhotoView(photo: .constant(photo), onInit: { value in
+                            print("onInit photo \(photo.id) -> \(value)")
                             model.updateFavoriteValue(photo, value)
-                        }
+                        }, onFavoriteResult:  {value in
+                            print("onFavoriteResult \(photo.id) -> \(value)")
+                            model.updateFavoriteValue(photo, value)
+                            stateValue = !value;
+                            isDownloaded = false;
+                            isFavorite = true;
+                        }, onDownloadResult: {value in
+                            print("onDownloadResult \(photo.id) -> \(value)")
+                            stateValue = !value;
+                            isFavorite = false;
+                            isDownloaded = true;
+                        })
                     }
-                
-                    
             }
             .scrollOptions(direction: .vertical)
             .gridStyle(
@@ -73,24 +79,7 @@ struct PhotosView: View {
                 columnsInLandscape: 3,
                 animation: .easeInOut(duration: 0.24)
             )
-            scrollDetection
         }
-    }
-    
-    var scrollDetection: some View {
-        GeometryReader { proxy in
-            Color.clear.preference(
-                key: ScrollPreferenceKeys.self,
-                value: proxy.frame(in: .named("scroll")).minY)
-        }
-        .frame(height: 0)
-        .onPreferenceChange(
-            ScrollPreferenceKeys.self,
-            perform: { value in
-                withAnimation(.easeInOut){
-                    scrollValue = CGFloat(value)
-                }
-            })
     }
     
     var body: some View {
@@ -143,6 +132,26 @@ struct PhotosView: View {
             .refreshable {
                 if !model.isBusy { model.load(refresh: true) }
             }
+            .overlay(alignment: .center) {
+                if isFavorite {
+                    FavoriteReactionView(
+                        state: $stateValue,
+                        reaction: $isFavorite)
+                    .padding()
+                    .background(Color.clear.background(.ultraThinMaterial))
+                    .cornerRadius(16.0)
+                }
+            }
+            .overlay(alignment: .center) {
+                if isDownloaded {
+                    DownloadReactionView(
+                        state: $stateValue,
+                        reaction: $isDownloaded)
+                    .padding()
+                    .background(Color.clear.background(.ultraThinMaterial))
+                    .cornerRadius(16.0)
+                }
+            }  
         }
     }
     
