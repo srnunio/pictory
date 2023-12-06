@@ -11,9 +11,13 @@ import CachedAsyncImage
  
 
 struct PhotoDetailsView: View {
+    
     @Binding var showed: Bool
     @Binding var photo: PexelPhoto
     @StateObject var model = DetailsOfPhotoViewModel()
+    @State var stateValue: Bool = false
+    @State var downloadedAction: Bool = false
+    @State var favoriteAction: Bool = false
     
     var namespace: Namespace.ID
     
@@ -35,7 +39,11 @@ struct PhotoDetailsView: View {
     
     var favoriteButton: some View {
         Button {
-            model.addOrRemoveToFavorites(photo: photo)
+            model.addOrRemoveToFavorites(photo: photo) {value in
+                stateValue = !value;
+                favoriteAction = true;
+                downloadedAction = false;
+            }
         }
         label: {
             VStack {
@@ -54,7 +62,13 @@ struct PhotoDetailsView: View {
     }
     
     var downloadButton: some View {
-        Button { model.downloadImage(photo: photo )}
+        Button { 
+            model.downloadImage(photo: photo) { value in
+                stateValue = !value;
+                favoriteAction = false;
+                downloadedAction = true;
+            }
+        }
         label: {
             if model.isDownloading {
                 ProgressView()
@@ -77,6 +91,7 @@ struct PhotoDetailsView: View {
                     closeButton
                     Spacer()
                     favoriteButton
+                        .padding(.horizontal, model.isDownloaded ? 16 : 0)
                     if !model.isDownloaded {
                         downloadButton.padding(.horizontal, 16)
                     }
@@ -120,6 +135,26 @@ struct PhotoDetailsView: View {
             )
             model.checkIfIsFavorite(id: Int(photo.id))
             model.checkIfIsDownloaded(id: Int(photo.id))
+        }
+        .overlay(alignment: .center) {
+            if favoriteAction {
+                FavoriteReactionView(
+                    state: $stateValue,
+                    reaction: $favoriteAction)
+                .padding()
+                .background(Color.clear.background(.ultraThinMaterial))
+                .cornerRadius(16.0)
+            }
+        }
+        .overlay(alignment: .center) {
+            if downloadedAction {
+                DownloadReactionView(
+                    state: $stateValue,
+                    reaction: $downloadedAction)
+                .padding()
+                .background(Color.clear.background(.ultraThinMaterial))
+                .cornerRadius(16.0)
+            }
         }
     }
     

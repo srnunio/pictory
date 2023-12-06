@@ -45,31 +45,33 @@ class DetailsOfPhotoViewModel: ObservableObject {
         }
     }
     
-    func addOrRemoveToFavorites(photo: PexelPhoto) {
+    func addOrRemoveToFavorites(photo: PexelPhoto, callback: @escaping ((Bool) -> Void)) {
         if _isFavorite {
-            removeToFavorites(Int(photo.id))
+            removeToFavorites(Int(photo.id),callback: callback)
         }else{
-            addToFavorites(photo)
+            addToFavorites(photo,callback: callback)
         }
     }
     
-    private func addToFavorites(_ photo: PexelPhoto) {
+    private func addToFavorites(_ photo: PexelPhoto, callback: @escaping ((Bool) -> Void)) {
         Task {
             _isFavorite = await favoriteRespository.addToFavorite(
                 objectId: String(photo.id),url: photo.originalImage)
+            callback(_isFavorite)
         }
     }
     
-    private func removeToFavorites(_ id: Int) {
+    private func removeToFavorites(_ id: Int, callback: @escaping ((Bool) -> Void)) {
         Task {
             _isFavorite = await favoriteRespository.removeToFavorite(objectId: String(id))
+            callback(_isFavorite)
         }
     }
     
-    func downloadImage(photo: PexelPhoto) {
+    func downloadImage(photo: PexelPhoto,  callback: @escaping ((Bool) -> Void)) {
         _isDownloading = true
         let saver = PexelsSaver()
-       
+        
         saver.download(
             url: photo.originalImage,
             objectId: Int(photo.id),
@@ -77,10 +79,14 @@ class DetailsOfPhotoViewModel: ObservableObject {
             onSuccess: {
                 print("onSuccess")
                 self._isDownloading = false
+                self._isDownloaded = true
+                callback(true)
             },
             onError: { error in
-                print("onSuccess")
+                print("onError")
                 self._isDownloading = false
+                self._isDownloaded = false
+                callback(false)
             })
     }
 }
