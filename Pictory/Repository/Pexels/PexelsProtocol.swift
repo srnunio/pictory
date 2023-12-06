@@ -9,4 +9,5 @@ import Foundation
 
 protocol PexelsProtocol {
     func getAll(page: Int, perPage: Int) async throws -> PexelResponse
+    func getId(id: Int) async throws -> PexelPhoto?
 }
