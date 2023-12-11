@@ -14,6 +14,8 @@ enum PexelsError: String, Error {
 }
 
 protocol PexelsProtocol {
+    // MARK: Search for a matching photo [id]
     func getId(id: Int, completion: @escaping (Result<PexelPhoto,PexelsError>) -> Void )
+    // MARK: browse all photos
     func getAll(page: Int, perPage: Int, completion: @escaping (Result<PexelResponse,PexelsError>) -> Void )
 }

@@ -18,13 +18,16 @@ struct GetPhotoView: View {
     
     var body: some View {
         ZStack {
+            Color.clear.background(.ultraThinMaterial).ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
                     ButtonAction(systemName: "plus") { onClose() }
                         .rotationEffect(.init(degrees: 45))
                     Spacer()
-                    ButtonAction(systemName: "trash") { onDelete?() }
-                        .padding(.horizontal, 16.0)
+//                    ButtonAction(systemName: "trash") {
+//                        onDelete?()
+//                    }
+//                    .padding(.horizontal, 16.0)
                 }
                 .foregroundColor(.primary)
             }

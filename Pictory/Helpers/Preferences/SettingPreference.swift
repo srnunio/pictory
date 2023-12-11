@@ -20,11 +20,7 @@ final class SettingPreference {
     static func setLocale(_ value: String) {
         let preferences = UserDefaults.standard
         preferences.set(value, forKey: "Locale")
-        preferences.synchronize()
-        
-        if  preferences.synchronize() {
-//            Bundle.setLanguage(value)
-        }
+        preferences.synchronize() 
     }
     
     

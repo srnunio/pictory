@@ -9,9 +9,10 @@ import SwiftUI
 import CachedAsyncImage
 
 struct FavoritesView: View {
-    @StateObject var model: FavoritesViewModel = FavoritesViewModel()
+    @StateObject var model: FavoritesViewModel = FavoritesViewModel() 
     @State var isDeliting: Bool = false
     @State var selectedItem: Favorite?
+    var onTappedReceiver: ((Favorite?) -> Void)?
     
     var body: some View {
         VStack{
@@ -55,6 +56,9 @@ struct FavoritesView: View {
                     .padding()
                     .background(.secondary.opacity(0.1))
                     .cornerRadius(16)
+                    .onTapGesture {
+                        onTappedReceiver?(favorite)
+                    }
                     .contextMenu {
                         Button { 
                             onSelect(favorite)

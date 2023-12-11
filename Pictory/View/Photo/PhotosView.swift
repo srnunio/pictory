@@ -56,21 +56,27 @@ struct PhotosView: View {
                         onTapped(photo: photo)
                     }
                     .contextMenu  {
-                        MenuPhotoView(photo: .constant(photo), onInit: { value in
-                            print("onInit photo \(photo.id) -> \(value)")
-                            model.updateFavoriteValue(photo, value)
-                        }, onFavoriteResult:  {value in
-                            print("onFavoriteResult \(photo.id) -> \(value)")
-                            model.updateFavoriteValue(photo, value)
-                            stateValue = !value;
-                            isDownloaded = false;
-                            isFavorite = true;
-                        }, onDownloadResult: {value in
-                            print("onDownloadResult \(photo.id) -> \(value)")
-                            stateValue = !value;
-                            isFavorite = false;
-                            isDownloaded = true;
-                        })
+                        MenuPhotoView(
+                            photo: .constant(photo),
+                            onCheckFavotite: { value in
+                                model.updateFavoriteValue(photo, value)
+                            },
+                            onCheckDownload: { value in
+                                model.updateDownloadValue(photo, value)
+                            },
+                            onFavoriteResult:  {value in
+                                model.updateFavoriteValue(photo, value)
+                                stateValue = !value;
+                                isDownloaded = false;
+                                isFavorite = true;
+                            },
+                            onDownloadResult: {value in
+                                stateValue = !value;
+                                isFavorite = false;
+                                isDownloaded = true;
+                                model.updateDownloadValue(photo, value)
+                            }
+                        )
                     }
             }
             .scrollOptions(direction: .vertical)

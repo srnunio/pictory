@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DownloadListItemView: View {
     var item: PexelDownload
+    var namespace: Namespace.ID
     
     var body: some View {
         HStack(spacing: 12) {
@@ -19,6 +20,7 @@ struct DownloadListItemView: View {
                     .frame(width: 45, height: 45)
                     .clipShape(RoundedRectangle(cornerRadius: 10,style: .continuous))
                     .padding(.horizontal, 2)
+                    .matchedGeometryEffect(id: "\(item.id)", in: namespace)
             }
             
             VStack (alignment: .leading, spacing: 8) {

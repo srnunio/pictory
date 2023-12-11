@@ -6,18 +6,30 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LocallyDownloadView: View {
     @StateObject var model: DownloadsViewModel = DownloadsViewModel()
-    @State var forDelete: PexelDownload?
+    @State var selectedToDelete: PexelDownload?
+    @State var selectedToOpen: PexelDownload?
     @State var isDeliting: Bool = false
+    @State var isOpened: Bool = false
+    @State var image = Image("Image")
+    
+    @Namespace var animation
+    
+    var onTappedReceiver: ((PexelDownload?) -> Void)?
     
     var body: some View {
         VStack{
             if model.isBusy && !model.hasData {
                 ProgressView()
             }else if model.hasData {
-                list
+                if selectedToOpen != nil && isOpened {
+                    GetPhotoView(id: Int(selectedToOpen!.objectId) ?? 0, namespace: animation, showed:$isOpened)
+                }else{
+                    list
+                }
             }else {
                 MessageView(
                     message: "no_downloads".toTranslate,
@@ -32,15 +44,15 @@ struct LocallyDownloadView: View {
                 title: Text("delete"),
                 message: Text("delete_download_warning"),
                 primaryButton: .cancel(Text("no"), action: {
-                    forDelete = nil
+                    selectedToDelete = nil
                     isDeliting = false
                 }),
                 secondaryButton: .destructive(Text("yes"), action: {
                     
-                    if forDelete == nil { return }
+                    if selectedToDelete == nil { return }
                     
-                    model.delete(download: forDelete!) {
-                        forDelete = nil
+                    model.delete(download: selectedToDelete!) {
+                        selectedToDelete = nil
                     }
                     isDeliting = false
                 })
@@ -51,18 +63,33 @@ struct LocallyDownloadView: View {
     var list: some View {
         ScrollView {
             ForEach(model.list) { download in
-                DownloadListItemView(item: download)
+                DownloadListItemView(item: download,namespace: animation)
                     .padding()
                     .background(.secondary.opacity(0.1))
                     .cornerRadius(16)
+                    .onTapGesture {
+                        onTappedReceiver?(download)
+                    }
                     .contextMenu {
                         Button {
                             withAnimation {
-                                forDelete = download
-                                isDeliting = true 
+                                selectedToDelete = download
+                                isDeliting = true
                             }
                         } label: {
-                            Text("delete".toTranslate)
+                            Label(
+                                title: { Text("delete".toTranslate) },
+                                icon: { Image(systemName: "trash") }
+                            )
+                        }
+                        ShareLink(
+                            item: Image(uiImage: download.content!),
+                            preview: SharePreview(
+                                "Download #\(download.objectId)",
+                                image: Image(uiImage: download.content!)
+                            )
+                        ) {
+                            Label("share".toTranslate, systemImage:  "square.and.arrow.up")
                         }
                     }
             }

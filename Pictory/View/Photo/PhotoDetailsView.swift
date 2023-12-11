@@ -82,7 +82,6 @@ struct PhotoDetailsView: View {
         }
     }
     
-    
     var body: some View {
         ZStack {
             Color.clear.background(.ultraThinMaterial).ignoresSafeArea()

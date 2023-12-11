@@ -10,6 +10,14 @@ import Foundation
 final class DownloadHandler {
     private init () {}
     
+    static func exists(objectId: Int, onCallback: @escaping ((Bool) -> Void))async -> Void {
+          let repository = DownloadRepository()
+        Task {
+            let result = await repository.isDownloaded(objectId: "\(objectId)")
+            onCallback(result)
+        }
+    }
+    
     static func start(photo: PexelPhoto, onCallback: ((Bool) -> Void)?) {
         let saver = PexelsSaver()
         

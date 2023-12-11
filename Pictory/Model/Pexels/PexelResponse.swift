@@ -12,7 +12,7 @@ enum PexelResponseKeys: String, CodingKey {
 
 private extension String {
     func extractValue() -> Int {
-        let newValue = replacingOccurrences(of: "\(Constants.api)/?page=", with: "")
+        let newValue = replacingOccurrences(of: "\(Constants.api)/v1/curated/?page=", with: "")
         
         if newValue.isEmpty { return 0 }
         
@@ -91,6 +91,5 @@ struct PexelResponse: Decodable {
         }
        
     }
- 
 }
 

@@ -21,10 +21,8 @@ struct ControllerSettingView: View {
     @ViewBuilder
     func ButtonView(systemName: String, onTap: (() -> Void)?) -> some View{
         let enabled = onTap != nil
-        Button {
-            if onTap != nil {
-                onTap?()
-            }
+        Button { 
+            if enabled { onTap?() }
         }
         label: {
             Image(systemName: systemName)

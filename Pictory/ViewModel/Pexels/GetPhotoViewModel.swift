@@ -44,12 +44,14 @@ class GetPhotoViewModel: ObservableObject {
         self._isBusy = true
         
         repository.getId(id: id) { response in
-            self._isBusy = false
-            switch response {
-            case .success(let photo):
-                self.setData(photo)
-            case .failure(let error):
-                self._error = error
+            DispatchQueue.main.async {
+                self._isBusy = false
+                switch response {
+                case .success(let photo):
+                    self.setData(photo)
+                case .failure(let error):
+                    self._error = error
+                }
             }
         }
     }
