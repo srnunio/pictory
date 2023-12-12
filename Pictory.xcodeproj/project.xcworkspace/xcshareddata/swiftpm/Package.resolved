@@ -10,48 +10,12 @@
       }
     },
     {
-      "identity" : "objectmapper",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tristanhimmelman/ObjectMapper.git",
-      "state" : {
-        "revision" : "0b96a734de3ea1c87374ae677064f86adb0716ec",
-        "version" : "4.2.0"
-      }
-    },
-    {
       "identity" : "sqlite.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stephencelis/SQLite.swift",
       "state" : {
         "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
         "version" : "0.14.1"
-      }
-    },
-    {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/swiftui-introspect.git",
-      "state" : {
-        "revision" : "9e1cc02a65b22e09a8251261cccbccce02731fc5",
-        "version" : "1.1.1"
-      }
-    },
-    {
-      "identity" : "toastui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/quanshousio/ToastUI",
-      "state" : {
-        "revision" : "1828801ea49e2ab900ca5e6bb18245312fda66a2",
-        "version" : "3.0.1"
-      }
-    },
-    {
-      "identity" : "trackable-scroll-view",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/maxnatchanon/trackable-scroll-view.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "4b094575c2370c3341d0b377a27b46bda4f937f7"
       }
     },
     {

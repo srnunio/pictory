@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052315DD2B13606D00AE55D6 /* MyPreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */; };
 		054630DD2B1E04AA00E90AB1 /* FavoriteReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630DC2B1E04AA00E90AB1 /* FavoriteReactionView.swift */; };
 		054630DF2B1E10E800E90AB1 /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630DE2B1E10E800E90AB1 /* ReactionView.swift */; };
 		054630E12B1E12BD00E90AB1 /* DownloadReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054630E02B1E12BD00E90AB1 /* DownloadReaction.swift */; };
@@ -56,6 +55,9 @@
 		0576ED1B2B1288660013A77F /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0576ED1A2B1288660013A77F /* PhotosView.swift */; };
 		0576ED1E2B128E310013A77F /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0576ED1D2B128E310013A77F /* CachedAsyncImage */; };
 		0576ED212B128E440013A77F /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 0576ED202B128E440013A77F /* WaterfallGrid */; };
+		058D88362B20A5A200848474 /* GetPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D88352B20A5A200848474 /* GetPhotoViewModel.swift */; };
+		058D88382B20A6D200848474 /* GetPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D88372B20A6D200848474 /* GetPhotoView.swift */; };
+		058D883A2B20C2D300848474 /* ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D88392B20C2D300848474 /* ButtonAction.swift */; };
 		059934742B1879140078C71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059934762B1879140078C71F /* Localizable.strings */; };
 		05AAA8872B136F98007506EA /* MenuPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAA8862B136F98007506EA /* MenuPhotoView.swift */; };
 		05AAA8892B137207007506EA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAA8882B137207007506EA /* HomeView.swift */; };
@@ -81,7 +83,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPreferenceKeys.swift; sourceTree = "<group>"; };
 		054630DC2B1E04AA00E90AB1 /* FavoriteReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteReactionView.swift; sourceTree = "<group>"; };
 		054630DE2B1E10E800E90AB1 /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		054630E02B1E12BD00E90AB1 /* DownloadReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadReaction.swift; sourceTree = "<group>"; };
@@ -131,6 +132,9 @@
 		0576ED162B127B2A0013A77F /* PexelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelsRepository.swift; sourceTree = "<group>"; };
 		0576ED182B127E2B0013A77F /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		0576ED1A2B1288660013A77F /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
+		058D88352B20A5A200848474 /* GetPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoViewModel.swift; sourceTree = "<group>"; };
+		058D88372B20A6D200848474 /* GetPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoView.swift; sourceTree = "<group>"; };
+		058D88392B20C2D300848474 /* ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAction.swift; sourceTree = "<group>"; };
 		059934752B1879140078C71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		059934772B1879820078C71F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0599347C2B189CE30078C71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			children = (
 				0576ED1A2B1288660013A77F /* PhotosView.swift */,
 				05AAA88C2B138A68007506EA /* PhotoDetailsView.swift */,
+				058D88372B20A6D200848474 /* GetPhotoView.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			children = (
 				0576ED182B127E2B0013A77F /* PhotosViewModel.swift */,
 				0574C7D02B14B0030016B792 /* DetailsOfPhotoViewModel.swift */,
+				058D88352B20A5A200848474 /* GetPhotoViewModel.swift */,
 			);
 			path = Pexels;
 			sourceTree = "<group>";
@@ -398,7 +404,6 @@
 				0574C7F32B15FF2F0016B792 /* Preferences */,
 				0574C7DC2B14DA6B0016B792 /* Download */,
 				054630E72B1F38A600E90AB1 /* Favorite */,
-				052315DC2B13606D00AE55D6 /* MyPreferenceKeys.swift */,
 				0576ED102B1279880013A77F /* Constants.swift */,
 				0574C7CB2B14AABC0016B792 /* DatabaseUtils.swift */,
 				0574C7CD2B14AB2A0016B792 /* FileUtils.swift */,
@@ -442,6 +447,7 @@
 				054630DE2B1E10E800E90AB1 /* ReactionView.swift */,
 				05AAA88A2B13723A007506EA /* ControllerSettingView.swift */,
 				05AAA8862B136F98007506EA /* MenuPhotoView.swift */,
+				058D88392B20C2D300848474 /* ButtonAction.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -541,13 +547,9 @@
 			);
 			mainGroup = 0576ECCA2B10F2020013A77F;
 			packageReferences = (
-				0576ED0A2B1241100013A77F /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				0576ED1C2B128E310013A77F /* XCRemoteSwiftPackageReference "CachedAsyncImage" */,
 				0576ED1F2B128E440013A77F /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
-				052315D02B13529600AE55D6 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
-				052315D72B13533000AE55D6 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */,
 				0574C7C32B14A8F70016B792 /* XCRemoteSwiftPackageReference "SQLite" */,
-				054630D42B1A31C500E90AB1 /* XCRemoteSwiftPackageReference "ToastUI" */,
 			);
 			productRefGroup = 0576ECD42B10F2020013A77F /* Products */;
 			projectDirPath = "";
@@ -605,14 +607,16 @@
 				0576ED172B127B2A0013A77F /* PexelsRepository.swift in Sources */,
 				0574C7C72B14A9130016B792 /* FavoriteDatabaseProtocol.swift in Sources */,
 				0574C7E62B14EAEE0016B792 /* Extensions.swift in Sources */,
+				058D88362B20A5A200848474 /* GetPhotoViewModel.swift in Sources */,
 				0574C7F92B1603640016B792 /* SettingViewModel.swift in Sources */,
-				052315DD2B13606D00AE55D6 /* MyPreferenceKeys.swift in Sources */,
 				0576ED152B127A820013A77F /* PexelsProtocol.swift in Sources */,
+				058D883A2B20C2D300848474 /* ButtonAction.swift in Sources */,
 				0574C7F02B15EFDA0016B792 /* FavoritesView.swift in Sources */,
 				0576ECD92B10F2020013A77F /* ContentView.swift in Sources */,
 				0576ECD72B10F2020013A77F /* PictoryApp.swift in Sources */,
 				0574C7C22B14A8450016B792 /* Favorite.swift in Sources */,
 				0574C7CA2B14AA360016B792 /* FavoriteRepository.swift in Sources */,
+				058D88382B20A6D200848474 /* GetPhotoView.swift in Sources */,
 				054630E32B1E201A00E90AB1 /* DownloadProtocol.swift in Sources */,
 				0574C7DE2B14DA890016B792 /* DownloadDataManager.swift in Sources */,
 				05AAA88B2B13723A007506EA /* ControllerSettingView.swift in Sources */,
@@ -808,7 +812,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pictory/Pictory.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Pictory/Preview Content\"";
 				DEVELOPMENT_TEAM = XSYCN6C3P4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -830,7 +834,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = srnunio.pictory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -838,7 +842,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -849,7 +853,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pictory/Pictory.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Pictory/Preview Content\"";
 				DEVELOPMENT_TEAM = XSYCN6C3P4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -871,7 +875,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = srnunio.pictory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -879,7 +883,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1015,44 +1019,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		052315D02B13529600AE55D6 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/swiftui-introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
-			};
-		};
-		052315D72B13533000AE55D6 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maxnatchanon/trackable-scroll-view.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		054630D42B1A31C500E90AB1 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/quanshousio/ToastUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.1;
-			};
-		};
 		0574C7C32B14A8F70016B792 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.14.1;
-			};
-		};
-		0576ED0A2B1241100013A77F /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
 			};
 		};
 		0576ED1C2B128E310013A77F /* XCRemoteSwiftPackageReference "CachedAsyncImage" */ = {
