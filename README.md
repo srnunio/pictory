@@ -14,21 +14,23 @@ This is an app resulting from a set of studies on developing mobile applications
 <a href="https://apps.apple.com/app/pub.dev/id1526026915"><img src="./apple.png" width="270" height="140"> </a>  
  </p>  
 
-## 📸 Preview
+## 📸 Previews
 
-<img title="" src="https://github.com/srnunio/pictory/blob/main/preview.gif" alt="" width="400">
+<p float="left">
+ <img title="" src="./preview2.gif" alt="" width="230" height="480" >
+ <img title="" src="./preview3.gif" alt="" width="230" height="480" >
+ <img title="" src="./preview4.gif" alt="" width="230" height="480" >
+ <img title="" src="./preview5.gif" alt="" width="230" height="480" >
+ <img title="" src="./preview6.gif" alt="" width="230" height="480" > 
+</p>
+
 
 ## 📸 Screenshots
 
 <p float="left">
   <img src="./screenshots/Screenshot1.png" width=230 height="480"/>
   <img src="./screenshots/Screenshot2.png" width=230 height="480" />
-  <img src="./screenshots/Screenshot3.png" width=230 height="480" /> 
-  <img src="./screenshots/Screenshot4.png" width=230 height="480" /> 
-  <img src="./screenshots/Screenshot5.png" width=230 height="480" /> 
-  <img src="./screenshots/Screenshot6.png" width=230 height="480" /> 
-  <img src="./screenshots/Screenshot7.png" width=230 height="480" /> 
-  <img src="./screenshots/Screenshot8.png" width=230 height="480" /> 
+  <img src="./screenshots/Screenshot3.png" width=230 height="480" />   
 </p>
 # Support
 
