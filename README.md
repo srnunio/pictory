@@ -1,7 +1,12 @@
 # Pictory (iOS)
 
 This is an app resulting from a set of studies on developing mobile applications for iOS with SwiftUI
-SQLite, CoreData and UserDefaults concepts were used
+
+```SQLite```, ```CoreData``` and ```UserDefaults``` concepts were used
+
+* **```SQLite```**: To save favorites
+* **```CoreData```**: To save internal downloads
+* **```UserDefaults```**: To save value settings
 
 
 
