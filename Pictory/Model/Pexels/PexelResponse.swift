@@ -1,5 +1,4 @@
-import Foundation
-import ObjectMapper
+import Foundation 
 
 enum PexelResponseKeys: String, CodingKey {
     case page
