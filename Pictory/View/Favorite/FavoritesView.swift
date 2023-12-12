@@ -30,7 +30,7 @@ struct FavoritesView: View {
         .alert(isPresented: $isDeliting) {
             Alert(
                 title: Text("delete"),
-                message: Text("delete_download_warning"),
+                message: Text("delete_favorite_warning"),
                 primaryButton: .cancel(Text("no"), action: {
                     onSelect(nil)
                 }),

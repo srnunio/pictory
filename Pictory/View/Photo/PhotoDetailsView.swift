@@ -8,8 +8,6 @@
 import SwiftUI
 import CachedAsyncImage
 
- 
-
 struct PhotoDetailsView: View {
     
     @Binding var showed: Bool
@@ -20,10 +18,6 @@ struct PhotoDetailsView: View {
     @State var favoriteAction: Bool = false
     
     var namespace: Namespace.ID
-    
-    var x: some View {
-        Circle().background(Circle().fill(.orange))
-    }
     
     var closeButton: some View {
         Button { onClose() }
@@ -162,10 +156,10 @@ struct PhotoDetailsView: View {
     }
 }
 
-#Preview {
-    @Namespace var namespace
-    return PhotoDetailsView(
-        showed: .constant(true),
-        photo: .constant(PexelPhoto.mockData),
-        namespace: namespace)
-}
+//#Preview {
+//    @Namespace var namespace
+//    return PhotoDetailsView(
+//        showed: .constant(true),
+//        photo: .constant(PexelPhoto.mockData),
+//        namespace: namespace)
+//}
