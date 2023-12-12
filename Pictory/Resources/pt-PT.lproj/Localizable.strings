@@ -26,6 +26,7 @@
 "download_failure" = "Download interropido ❌";
 "delete" = "Eliminar";
 "delete_download_warning" = "Deseja eliminar esse download?";
+"delete_favorite_warning" = "Deseja eliminar dos favoritos?";
 "no" = "Não";
 "yes" = "Sim";
 "unauthorized" = "Sem autorização para continuar";
