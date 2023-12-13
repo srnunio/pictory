@@ -16,6 +16,7 @@ struct PhotosView: View {
     @State var stateValue: Bool = false
     @State var isFavorite: Bool = false
     @State var isDownloaded : Bool = false
+    @State var failureDownloaded : Bool = false
     @State var columns: Double = 3.0
     @State var scrollValue: CGFloat = 0
     @Binding var openedDetail: Bool
@@ -71,10 +72,14 @@ struct PhotosView: View {
                                 isFavorite = true;
                             },
                             onDownloadResult: {value in
-                                stateValue = !value;
-                                isFavorite = false;
-                                isDownloaded = true;
-                                model.updateDownloadValue(photo, value)
+                                if value {
+                                    stateValue = !value;
+                                    isFavorite = false;
+                                    isDownloaded = true;
+                                    model.updateDownloadValue(photo, value)
+                                }else {
+                                    failureDownloaded = true;
+                                }
                             }
                         )
                     }
@@ -159,7 +164,11 @@ struct PhotosView: View {
                     .background(Color.clear.background(.ultraThinMaterial))
                     .cornerRadius(16.0)
                 }
-            }  
+            }
+            .alert("download_failure".toTranslate,isPresented: $failureDownloaded) {
+                Button("OK", role: .cancel) { failureDownloaded = false
+                }
+            }
         }
     }
     
