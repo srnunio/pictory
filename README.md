@@ -11,7 +11,7 @@ This is an app resulting from a set of studies on developing mobile applications
 
 
 <p float="left;padding=10px">
-<a href="https://apps.apple.com/app/pub.dev/id6474179829"><img src="./apple.png" width="270" height="140"> </a>  
+<a href="https://testflight.apple.com/join/2F8uwPqk"><img src="./apple.png" width="270" height="140"> </a>  
  </p>  
 
 ## 📸 Previews
