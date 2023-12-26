@@ -8,12 +8,14 @@
 import SwiftUI
 import CachedAsyncImage
 
- 
-
 struct PhotoDetailsView: View {
+    
     @Binding var showed: Bool
     @Binding var photo: PexelPhoto
     @StateObject var model = DetailsOfPhotoViewModel()
+    @State var stateValue: Bool = false
+    @State var downloadedAction: Bool = false
+    @State var favoriteAction: Bool = false
     
     var namespace: Namespace.ID
     
@@ -22,8 +24,7 @@ struct PhotoDetailsView: View {
         label: {
             Image(systemName: "plus")
                 .padding(16)
-                .background(.ultraThinMaterial, in: Circle())
-                .shadow(color: .secondary ,radius: 4)
+                .background(.ultraThinMaterial, in: Circle()) 
         }
         .rotationEffect(.init(degrees: 45))
         .padding(.leading)
@@ -32,20 +33,36 @@ struct PhotoDetailsView: View {
     
     var favoriteButton: some View {
         Button {
-            model.addOrRemoveToFavorites(photo: photo)
+            model.addOrRemoveToFavorites(photo: photo) {value in
+                stateValue = !value;
+                favoriteAction = true;
+                downloadedAction = false;
+            }
         }
         label: {
-            Image(systemName: model.isFavorite ? "heart.fill" : "heart")
-                .padding(16)
-                .background(
-                    Circle().fill(.ultraThinMaterial))
-                .foregroundColor(model.isFavorite ? .red : .primary)
-                .shadow(color: .secondary ,radius: 4)
+            VStack {
+                if model.isFavorite {
+                    Image(systemName: "heart.fill" )
+                        .padding(16)
+                        .background(Circle().fill(.red))
+                } else    {
+                    Image(systemName: "heart")
+                        .padding(16)
+                        .background(Circle().fill(.ultraThinMaterial))
+                }
+                
+            } .foregroundColor(model.isFavorite ? .white : .primary)
         }
     }
     
     var downloadButton: some View {
-        Button { model.downloadImage(photo: photo )}
+        Button { 
+            model.downloadImage(photo: photo) { value in
+                stateValue = !value;
+                favoriteAction = false;
+                downloadedAction = true;
+            }
+        }
         label: {
             if model.isDownloading {
                 ProgressView()
@@ -55,11 +72,9 @@ struct PhotoDetailsView: View {
                 Image(systemName: "square.and.arrow.down")
                     .padding(16)
                     .background(Circle().fill(.ultraThinMaterial))
-                    .shadow(color: .secondary ,radius: 4)
             }
         }
     }
-    
     
     var body: some View {
         ZStack {
@@ -69,8 +84,10 @@ struct PhotoDetailsView: View {
                     closeButton
                     Spacer()
                     favoriteButton
-                    Spacer()
-                    downloadButton.padding(.trailing, 16)
+                        .padding(.horizontal, model.isDownloaded ? 16 : 0)
+                    if !model.isDownloaded {
+                        downloadButton.padding(.horizontal, 16)
+                    }
                 }
                 .foregroundColor(.primary)
             }
@@ -110,6 +127,27 @@ struct PhotoDetailsView: View {
                 totalCostLimit: 1024 * 1024 * 50
             )
             model.checkIfIsFavorite(id: Int(photo.id))
+            model.checkIfIsDownloaded(id: Int(photo.id))
+        }
+        .overlay(alignment: .center) {
+            if favoriteAction {
+                FavoriteReactionView(
+                    state: $stateValue,
+                    reaction: $favoriteAction)
+                .padding()
+                .background(Color.clear.background(.ultraThinMaterial))
+                .cornerRadius(16.0)
+            }
+        }
+        .overlay(alignment: .center) {
+            if downloadedAction {
+                DownloadReactionView(
+                    state: $stateValue,
+                    reaction: $downloadedAction)
+                .padding()
+                .background(Color.clear.background(.ultraThinMaterial))
+                .cornerRadius(16.0)
+            }
         }
     }
     
@@ -118,10 +156,10 @@ struct PhotoDetailsView: View {
     }
 }
 
-#Preview {
-    @Namespace var namespace
-    return PhotoDetailsView(
-        showed: .constant(true),
-        photo: .constant(PexelPhoto.mockData),
-        namespace: namespace)
-}
+//#Preview {
+//    @Namespace var namespace
+//    return PhotoDetailsView(
+//        showed: .constant(true),
+//        photo: .constant(PexelPhoto.mockData),
+//        namespace: namespace)
+//}

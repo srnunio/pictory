@@ -9,62 +9,71 @@ import SwiftUI
 import CachedAsyncImage
 
 struct FavoritesView: View {
-    @StateObject var model: FavoritesViewModel = FavoritesViewModel()
+    @StateObject var model: FavoritesViewModel = FavoritesViewModel() 
+    @State var isDeliting: Bool = false
+    @State var selectedItem: Favorite?
+    var onTappedReceiver: ((Favorite?) -> Void)?
     
     var body: some View {
         VStack{
-            List {
-                if model.hasData {
-                    list
-                }else {
-                    MessageView(message: "No favorites",systemName: "star")
-                }
+            if model.hasData {
+                list
+            }else {
+                MessageView(
+                    message: "no_favorites".toTranslate,
+                    systemName: "star")
             }
         }
         .onAppear {
             model.load()
         }
+        .alert(isPresented: $isDeliting) {
+            Alert(
+                title: Text("delete"),
+                message: Text("delete_favorite_warning"),
+                primaryButton: .cancel(Text("no"), action: {
+                    onSelect(nil)
+                }),
+                secondaryButton: .destructive(
+                    Text("yes"),
+                    action: {
+                        
+                        if selectedItem == nil { return }
+                        
+                        model.delete(selectedItem) {
+                            onSelect(nil)
+                        }
+                    }
+                )
+            )
+        }
     }
     
     var list: some View {
-        ForEach(model.list) { favorite in
-            HStack(spacing: 12) {
-                CachedAsyncImage(
-                    url: favorite.url,
-                    placeholder: {
-                        ProgressView()
-                    },
-                    image: {data in
-                        Image(cpImage: data)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 45, height: 45)
-                            .clipShape(RoundedRectangle(cornerRadius: 10,style: .continuous))
-                            .padding(.horizontal, 2)
-                        
-                    },
-                    error: { error in
-                        Image(systemName: "photo")
+        ScrollView {
+            ForEach(model.list) { favorite in
+                FavoriteListeItemView(item: favorite)
+                    .padding()
+                    .background(.secondary.opacity(0.1))
+                    .cornerRadius(16)
+                    .onTapGesture {
+                        onTappedReceiver?(favorite)
                     }
-                )
-                .padding(.horizontal, 2)
-                
-                VStack (alignment: .leading, spacing: 8) {
-                    Text("Favorite #\(favorite.objectId)")
-                        .font(.subheadline)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.primary)
-                }
-                Spacer()
+                    .contextMenu {
+                        Button { 
+                            onSelect(favorite)
+                        } label: {
+                            Text("delete".toTranslate)
+                        }
+                    }
             }
-            .swipeActions(edge: .trailing,allowsFullSwipe: true) {
-                Button {
-                    //                    model.delete(download: download)
-                } label: {
-                    Label("Read", systemImage: "trash")
-                }
-                .tint(.red)
-            }
+        }
+    }
+    
+    private func onSelect(_ favorite: Favorite?) {
+        withAnimation {
+            selectedItem = favorite
+            isDeliting = favorite != nil
         }
     }
 }

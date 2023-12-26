@@ -6,18 +6,20 @@
 //
 
 import SwiftUI
-
+import Combine
 enum HomeViewEnum: String, CaseIterable {
     case photos,favorites, downloads
 }
+
 struct HomeView: View {
     @State var columns: Double = 3.0
     @State var openedDetail: Bool = false
     @State var selection: HomeViewEnum = .photos
     @State var photoSelected: PexelPhoto?
+    @State var downloadSelected: PexelDownload?
+    @State var favoriteSelected: Favorite?
     @State var showed: Bool = false
     @State var showSetting: Bool = false
-    
     @Namespace var animation: Namespace.ID
     
     var navigationBar: some View {
@@ -46,6 +48,7 @@ struct HomeView: View {
             }
         }
     }
+    
     var pickerView: some View {
         HStack {
             Picker( "",selection: $selection) {
@@ -78,10 +81,14 @@ struct HomeView: View {
                             onTappedReceiver: onTapped)
                         .tag(HomeViewEnum.photos)
                         
-                        FavoritesView()
-                            .tag(HomeViewEnum.favorites) 
-                        LocallyDownloadView()
+                        FavoritesView(onTappedReceiver: onTappedFavorite)
+                            .tag(HomeViewEnum.favorites)
+                            .padding(.horizontal, 16)
+                        
+                        LocallyDownloadView( 
+                            onTappedReceiver: onTappedDownload)
                             .tag(HomeViewEnum.downloads)
+                            .padding(.horizontal, 16)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
@@ -92,10 +99,15 @@ struct HomeView: View {
                         showed: $showed,
                         photo: .constant(photoSelected!),
                         namespace: animation)
+                } else if downloadSelected != nil  && showed {
+                    GetPhotoView(id: Int(downloadSelected!.objectId) ?? 0, namespace: animation, showed:$showed)
+                } else if   favoriteSelected != nil && showed {
+                    GetPhotoView(id: Int(favoriteSelected!.objectId) ?? 0, namespace: animation, showed:$showed)
                 }
             })
             .onChange(of: showed){ _, value in
                 if !value && photoSelected != nil { onTapped(nil) }
+                if !value && downloadSelected != nil { onTappedDownload(nil) }
             }
             .sheet(isPresented: $showSetting) {
                 SettingsView()
@@ -109,6 +121,20 @@ struct HomeView: View {
         withAnimation {
             photoSelected = photo
             showed = photo != nil
+        }
+    }
+    
+    func onTappedDownload(_ download: PexelDownload?) {
+        withAnimation {
+            downloadSelected = download
+            showed = download != nil
+        }
+    } 
+    
+    func onTappedFavorite(_ favorite: Favorite?) {
+        withAnimation {
+            favoriteSelected = favorite
+            showed = favorite != nil
         }
     }
 }

@@ -8,9 +8,11 @@
 import UIKit
 
 final class PexelsSaver: NSObject {
-    private var context = DownloadDataManager.instance.persistent.viewContext
+    
+    private var repository = DownloadRepository()
     
     private var onSuccess: (() -> Void)?
+    
     private var onError: ((Error) -> Void)?
     
     func download(url: String,objectId: Int = 0, saveLocally: Bool = false, onSuccess: (() -> Void)?, onError: ((Error) -> Void)?) {
@@ -33,14 +35,10 @@ final class PexelsSaver: NSObject {
     }
     
     private func writeToPhotoLocally(objectId: Int, image: UIImage) {
-        do {
-            let download = PexelDownload(context: self.context)
-            download.objectId = "\(objectId)"
-            download.date = Date.now.ISO8601Format()
-            download.content = image
-            try self.context.save() 
+        let result = repository.save(objectId: objectId, image: image)
+        if result {
             onSuccess?()
-        }catch {
+        }else {
             onError?( NSError(domain:"", code: 100, userInfo:nil))
         }
     }

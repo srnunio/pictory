@@ -10,10 +10,11 @@ import SwiftUI
 @MainActor
 class PhotosViewModel: ObservableObject {
     fileprivate var repository: PexelsProtocol = PexelsRepository()
-    @Published fileprivate var response: PexelResponse = PexelResponse.empty
+    @Published private var response: PexelResponse = PexelResponse.empty
     @Published fileprivate var _currentPage: Int = 1 
     @Published fileprivate var _isBusy: Bool = false
     @Published fileprivate var photos: [PexelPhoto] = [PexelPhoto]()
+    @Published fileprivate var _error: PexelsError?
     
     var isBusy: Bool {
         get { _isBusy }
@@ -47,29 +48,46 @@ class PhotosViewModel: ObservableObject {
         get { response.totalPage }
     }
     
-    func load (refresh: Bool = false) {
-        Task {
-           
-            photos = []
-            
-            if refresh { _currentPage = 1}
-            
-            self._isBusy = true
-            
-            let result = try await repository.getAll(page: _currentPage, perPage: Constants.perPage)
-            
-            self._isBusy = false
-            
+    var hasError: Bool {
+        get { _error != nil }
+    }
+    
+    var error: PexelsError {
+        get { _error! }
+    }
+    
+     
+    fileprivate func setData(_ result: PexelResponse, _ refresh: Bool) {
+        DispatchQueue.main.async {
             if result.hasData {
                 if refresh {
-                    photos = result.data as! [PexelPhoto]
+                    self.photos = result.data as! [PexelPhoto]
                 }else{
-                    result.data.forEach { item in
-                        photos.append(item as! PexelPhoto)
-                    }
-                } 
+                    self.photos = result.data as! [PexelPhoto];
+                }
+            }else {
+                self._error = .notfound
             }
-            response = result
+            self.response = result 
+        }
+    }
+    
+    func load (refresh: Bool = false) {
+        
+        if _isBusy { return }
+        
+        self._isBusy = true
+        
+        repository.getAll(page: _currentPage, perPage: Constants.perPage) { response in
+            DispatchQueue.main.async {
+                self._isBusy = false
+                switch response {
+                    case .success(let result):
+                        self.setData(result, refresh)
+                    case .failure(let error):
+                        self._error = error
+                }
+            }
         }
     }
     
@@ -104,4 +122,11 @@ class PhotosViewModel: ObservableObject {
         }
     }
     
+    func updateDownloadValue(_ photo: PexelPhoto, _ value: Bool) {
+        Task {
+            let index = getPosition(photo: photo)
+            if index < 0 { return }
+            self.photos[index].isDownloaded = value
+        }
+    }
 }

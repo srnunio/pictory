@@ -32,21 +32,7 @@ struct SettingsView: View {
                         model.onOrOffLocallyDownload() 
                     }
                 }
-                .accentColor(.primary)
-                Section("languages".toTranslate) {
-                    Toggle(isOn:.constant( model.isPortuguesse), label: {
-                        createLabel(title: "portuguese".toTranslate, imageName: "ao")
-                    }).onTapGesture {
-                        model.enbalePTLanguage()
-                    }
-                    Toggle(isOn: .constant(model.isEnglish), label: {
-                        createLabel(title: "english".toTranslate, imageName: "us")
-                    })
-                    .onTapGesture {
-                        model.enbaleUSLanguage()
-                    }
-                }
-                .accentColor(.primary)
+                .accentColor(.primary) 
             }
             .navigationTitle("settings".toTranslate)
         }

@@ -9,9 +9,13 @@
 "app_name" = "Pictory";
 "remove_favorite" = "Remover dos favoritos";
 "favorite" = "Favorito";
+"add_to_favorite" = "Adicionado aos favoritos";
+"remove_to_favorite" = "Removido dos favoritos";
 "favorites" = "Favoritos";
+"no_favorites" = "Sem favoritos";
 "download" = "Download";
 "downloads" = "Downloads";
+"no_downloads" = "Sem downloads";
 "locally_download" = "Guardar localmente";
 "portuguese" = "Português";
 "english" = "Inglês";
@@ -20,3 +24,12 @@
 "photos" = "Fotográfias";
 "download_sucessfully" = "Download concluído ✅";
 "download_failure" = "Download interropido ❌";
+"delete" = "Eliminar";
+"delete_download_warning" = "Deseja eliminar esse download?";
+"delete_favorite_warning" = "Deseja eliminar dos favoritos?";
+"no" = "Não";
+"yes" = "Sim";
+"unauthorized" = "Sem autorização para continuar";
+"failure" = "Ocorreu uma falha temporária";
+"notfound" = "Nenhum resultado encontrado";
+"share" = "Partilhar";

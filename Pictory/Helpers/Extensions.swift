@@ -19,7 +19,6 @@ extension Date {
 }
 
 extension String {
-    
     var toTranslate: String {
         let defaultLanguage = SettingPreference.getLocale()
         let value = NSLocalizedString(self, comment: "")
@@ -33,24 +32,4 @@ extension String {
         
         return NSLocalizedString(self, bundle: bundle, comment: "")
     }
-    
-//    var toTranslate: String {
-//        return self
-////        let path = Bundle.main.path(forResource: "pt", ofType: "strings")
-////             let bundle = Bundle(path: path!)
-////             return NSLocalizedString(self, tableName: nil, bundle: bundle!,
-////             value: "", comment: "")
-//    }
-//    var toTranslate: LocalizedStringKey {
-//        get {
-//            return LocalizedStringKey(self)
-//        }
-//    }
-    
-    
 }
-
-//extension LocalizedStringKey {
-//    var toString: String {
-//    }
-//}

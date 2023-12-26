@@ -5,45 +5,11 @@
 //  Created by Edvaldo Martins on 24/11/2023.
 //
 
-import Foundation
-import ObjectMapper
+import Foundation 
 import SwiftUI
 
-//struct PexelPhoto: Mappable {
-//
-//    var id: Int64
-//    var width: Int
-//    var height: Int
-//    var avgColor: String
-//    var alt: String
-//    var src: [String:String]
-//
-//    init?(map: ObjectMapper.Map) {
-//        id = try! map.value("id")
-//        width = try! map.value("width")
-//        height = try! map.value("height")
-//        avgColor = try! map.value("avg_color")
-//        alt = try! map.value("alt")
-//        src = try! map.value("src")
-//    }
-//
-//
-//    mutating func mapping(map: ObjectMapper.Map) {
-//        self.id <- map["id"]
-//        self.width <- map["width"]
-//        self.height <- map["height"]
-//        self.avgColor <- map["avg_color"]
-//        self.alt <- map["alt"]
-//        self.src <- map["src"]
-//    }
-//
-//}
-
-
 extension PexelPhoto {
-    
-   
-    
+
     var originalImage:String {
         src.isEmpty ? "" : src["original"] ?? ""
     }
@@ -105,7 +71,7 @@ private enum PexelPhotoKeys : String, CodingKey {
     case id, width, height, avg_color,alt,src
 }
 
-struct PexelPhoto:Identifiable, Decodable, Hashable {
+struct PexelPhoto:Identifiable, Codable, Hashable, Equatable {
     
     var id: Int64
     var width: Int
@@ -114,6 +80,7 @@ struct PexelPhoto:Identifiable, Decodable, Hashable {
     var alt: String
     var src: [String:String]
     var isFavorite: Bool = false
+    var isDownloaded: Bool = true
    
     init(id: Int64, width: Int, height: Int, avgColor: String, alt: String, src: [String : String], isFavorite: Bool) {
         self.id = id

@@ -52,7 +52,7 @@ class SettingViewModel: ObservableObject {
     
     private func languageButtonAction(localeCode: String) {
         print("UNMutableNotificationContent")
-        NotificationUtils.show()
+//        NotificationUtils.show()
     }
 }
  
